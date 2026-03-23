@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeckoSpot | Galeri Leopard Gecko Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfdfd; }
+        
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .gecko-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .gecko-card:hover { transform: translateY(-12px); }
+        .btn-grad { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+        
+        /* Animasi masuk */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeIn 0.6s ease forwards; }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Logo" class="h-10 w-auto">
+                <span class="text-2xl font-extrabold tracking-tighter text-gray-900">GECKO<span class="text-orange-500">SPOT</span></span>
+            </div>
+            <button onclick="openModal('login-modal')" class="bg-gray-900 text-white px-6 py-2 rounded-full font-bold text-sm hover:scale-105 transition shadow-lg flex items-center gap-2">
+                <i class="fas fa-user-shield text-xs text-orange-400"></i> Admin
+            </button>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-20 px-6 text-center bg-gradient-to-b from-orange-50 to-white">
+        <div class="container mx-auto max-w-4xl animate-fade">
+            <span class="bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4 inline-block">Premium Collection 2026</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">High Quality<br><span class="text-orange-500">Leopard Gecko</span></h1>
+            <p class="text-gray-600 text-lg md:text-xl mb-10 max-w-2xl mx-auto">Kami menyediakan berbagai morph Leopard Gecko dengan perawatan standar kontes. Kualitas adalah prioritas utama kami.</p>
+            <a href="#katalog" class="btn-grad text-white px-10 py-4 rounded-2xl font-extrabold text-lg shadow-xl shadow-orange-200 hover:shadow-orange-400 transition-all inline-block">Lihat Katalog</a>
+        </div>
+    </header>
+
+    <section id="katalog" class="container mx-auto py-20 px-6">
+        <div id="gecko-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-20 px-6 mt-10 rounded-t-[3rem]">
+        <div class="container mx-auto text-center">
+            <img src="logo.png" alt="Logo" class="h-16 mx-auto mb-8 grayscale invert opacity-50">
+            <h2 class="text-3xl font-bold mb-10 tracking-tight text-gray-100">Hubungi Kami</h2>
+            <div class="flex justify-center gap-8 mb-12 text-5xl">
+                <a href="https://wa.me/6289669761721" target="_blank" class="text-green-500 hover:scale-110 transition"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/geckospot11" target="_blank" class="text-pink-500 hover:scale-110 transition"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="text-gray-500 text-sm border-t border-gray-800 pt-10">&copy; 2026 GeckoSpot. Quality is our Soul.</p>
+        </div>
+    </footer>
+
+    <div id="login-modal" class="fixed inset-0 bg-black/80 hidden z-[100] flex items-center justify-center p-6 backdrop-blur-md">
+        <div class="bg-white p-10 rounded-[2.5rem] w-full max-w-md shadow-2xl text-center">
+            <h3 class="text-3xl font-extrabold mb-8">Admin Access</h3>
+            <input type="password" id="admin-pass" placeholder="Password" class="w-full bg-gray-50 border-2 border-gray-100 p-4 rounded-2xl mb-6 text-center text-xl tracking-widest focus:border-orange-500 transition outline-none">
+            <div class="flex gap-4">
+                <button onclick="closeModal('login-modal')" class="w-full py-4 font-bold text-gray-400">Batal</button>
+                <button onclick="checkPass()" class="w-full btn-grad text-white py-4 rounded-2xl font-extrabold shadow-lg">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-panel" class="fixed inset-0 bg-white hidden z-[110] overflow-y-auto p-6 md:p-12">
+        <div class="container mx-auto max-w-4xl">
+            <div class="flex justify-between items-center mb-12 bg-gray-50 p-6 rounded-3xl border border-gray-100">
+                <h2 class="text-3xl font-extrabold">GeckoSpot Control</h2>
+                <button onclick="closeAdmin()" class="bg-red-50 text-red-500 px-6 py-2 rounded-full font-bold">Keluar</button>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] border-2 border-orange-50 shadow-xl shadow-orange-50/50 mb-12">
+                <h3 class="text-xl font-bold mb-8 flex items-center gap-2"><i class="fas fa-plus text-orange-500"></i> Tambah Stok Baru</h3>
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" id="g-morph" placeholder="Morph Name" class="p-4 bg-gray-50 border rounded-2xl outline-none focus:border-orange-500">
+                        <input type="number" id="g-price" placeholder="Harga (Rp)" class="p-4 bg-gray-50 border rounded-2xl outline-none focus:border-orange-500">
+                    </div>
+                    <textarea id="g-desc" placeholder="Data Lengkap (DOB, Gender, Breed, dll)" class="w-full p-4 bg-gray-50 border rounded-2xl outline-none focus:border-orange-500" rows="3"></textarea>
+                    
+                    <div class="relative w-full h-40 border-2 border-dashed border-gray-200 rounded-2xl flex flex-col items-center justify-center bg-orange-50/30 hover:border-orange-400 transition group cursor-pointer overflow-hidden">
+                        <input type="file" id="file-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20">
+                        <div id="preview-area" class="text-center z-10">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-300 mb-2 group-hover:text-orange-500"></i>
+                            <p class="text-sm font-bold text-gray-400 group-hover:text-orange-600">Klik / Seret Foto Dari Galeri</p>
+                        </div>
+                        <img id="img-preview" class="absolute inset-0 w-full h-full object-cover hidden">
+                    </div>
+
+                    <button onclick="saveGecko()" class="w-full btn-grad text-white py-5 rounded-2xl font-extrabold text-lg shadow-xl shadow-orange-100">Posting Gecko</button>
+                </div>
+            </div>
+
+            <div id="adm-list" class="space-y-4">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = "gecko123";
+        let geckos = JSON.parse(localStorage.getItem('geckospot_db')) || [];
+        let currentBase64 = "";
+
+        // Fungsi handle upload file
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                currentBase64 = reader.result;
+                document.getElementById('img-preview').src = currentBase64;
+                document.getElementById('img-preview').classList.remove('hidden');
+                document.getElementById('preview-area').classList.add('hidden');
+            };
+            if (file) reader.readAsDataURL(file);
+        });
+
+        function render() {
+            const list = document.getElementById('gecko-list');
+            const adm = document.getElementById('adm-list');
+            list.innerHTML = ''; adm.innerHTML = '';
+
+            if(geckos.length === 0) {
+                list.innerHTML = `<div class="col-span-full py-20 text-center"><p class="text-gray-400 font-bold">Belum ada stok. Admin sedang update!</p></div>`;
+            }
+
+            geckos.forEach(g => {
+                // Tampilan Web Depan
+                list.innerHTML += `
+                <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl border border-gray-50 gecko-card animate-fade">
+                    <div class="h-64 overflow-hidden">
+                        <img src="${g.img}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-extrabold mb-1">${g.morph}</h3>
+                        <p class="text-orange-600 font-extrabold text-xl mb-6">Rp ${Number(g.price).toLocaleString('id-ID')}</p>
+                        <div class="bg-gray-50 p-4 rounded-2xl mb-8 text-sm text-gray-500 leading-relaxed border border-gray-100">
+                            <span class="block font-bold text-gray-900 mb-1">Data Lengkap:</span> ${g.desc}
+                        </div>
+                        <a href="https://wa.me/6289669761721?text=Halo%20GeckoSpot,%20saya%20tertarik%20dengan%20${g.morph}" target="_blank" class="w-full block bg-gray-900 text-white text-center py-4 rounded-2xl font-bold hover:bg-orange-600 transition shadow-lg shadow-gray-200">Beli Sekarang</a>
+                    </div>
+                </div>`;
+
+                // Tampilan Manajemen Admin
+                adm.innerHTML += `
+                <div class="flex items-center justify-between p-4 bg-gray-50 border rounded-2xl">
+                    <div class="flex items-center gap-4">
+                        <img src="${g.img}" class="h-16 w-16 rounded-xl object-cover">
+                        <div>
+                            <p class="font-bold text-gray-900">${g.morph}</p>
+                            <p class="text-xs text-orange-600 font-bold italic">Rp ${Number(g.price).toLocaleString('id-ID')}</p>
+                        </div>
+                    </div>
+                    <button onclick="deleteGecko(${g.id})" class="text-red-500 bg-white p-3 rounded-xl shadow-sm"><i class="fas fa-trash"></i></button>
+                </div>`;
+            });
+            localStorage.setItem('geckospot_db', JSON.stringify(geckos));
+        }
+
+        function saveGecko() {
+            const m = document.getElementById('g-morph').value;
+            const p = document.getElementById('g-price').value;
+            const d = document.getElementById('g-desc').value;
+            
+            if(!m || !p || !currentBase64) return alert("Mohon isi Nama, Harga, dan Pilih Foto!");
+
+            geckos.unshift({ id: Date.now(), morph: m, price: p, desc: d, img: currentBase64 });
+            render();
+            
+            // Reset Form
+            document.getElementById('g-morph').value = '';
+            document.getElementById('g-price').value = '';
+            document.getElementById('g-desc').value = '';
+            document.getElementById('img-preview').classList.add('hidden');
+            document.getElementById('preview-area').classList.remove('hidden');
+            currentBase64 = "";
+            alert("Berhasil Posting!");
+        }
+
+        function deleteGecko(id) {
+            if(confirm("Hapus stok ini?")) {
+                geckos = geckos.filter(x => x.id !== id);
+                render();
+            }
+        }
+
+        // Utils
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+        function checkPass() {
+            if(document.getElementById('admin-pass').value === ADMIN_PASSWORD) {
+                document.getElementById('admin-panel').classList.remove('hidden');
+                closeModal('login-modal');
+                document.getElementById('admin-pass').value = "";
+            } else { alert("Password Salah!"); }
+        }
+        function closeAdmin() { document.getElementById('admin-panel').classList.add('hidden'); }
+
+        render();
+    </script>
+</body>
+</html>
